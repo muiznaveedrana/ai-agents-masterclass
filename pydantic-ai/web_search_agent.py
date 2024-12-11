@@ -19,12 +19,14 @@ load_dotenv()
 llm = os.getenv('LLM_MODEL', 'gpt-4o')
 
 client = AsyncOpenAI(
-    base_url = 'http://localhost:11434/v1',
-    api_key='ollama'
+    base_url = 'https://ai-youraicompanion9945ai430844240611.openai.azure.com/',
+    api_key='3ekJp2Yt9M7QqsordVESv5p4ylgQ5iFQkOX1paNDvYhE1iYlFUI4JQQJ99AKACHYHv6XJ3w3AAAAACOGsVKh'
 )
 
-model = OpenAIModel(llm) if llm.lower().startswith("gpt") else OpenAIModel(llm, openai_client=client)
-
+model = OpenAIModel(
+    llm,
+    openai_client=client
+)
 # 'if-token-present' means nothing will be sent (and the example will work) if you don't have logfire configured
 logfire.configure(send_to_logfire='if-token-present')
 
